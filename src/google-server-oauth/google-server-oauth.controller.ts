@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Get,
-  Logger,
-  Query,
-  Redirect,
-} from '@nestjs/common'
+import { Controller, Get, Logger, Query, Redirect } from '@nestjs/common'
 import { GoogleServerOauthService } from './google-server-oauth.service'
 
 @Controller('google-server-oauth')

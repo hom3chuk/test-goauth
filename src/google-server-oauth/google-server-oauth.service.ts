@@ -51,8 +51,25 @@ export class GoogleServerOauthService {
 
     const { tokens } = await this.googleOAuth.getToken(code)
 
+    if (!tokens.refresh_token) {
+      this.logger.error(
+        'no refresh_token from Google. Check if you request `access_type: offline`. ',
+        state,
+      )
+      throw new Error('no refresh token received from Google')
+    }
+
     this.logger.log('got tokens', tokens)
     this.googleOAuth.setCredentials(tokens)
+
+    this.tokenService.updateToken({
+      data: {
+        refresh_token: tokens.refresh_token,
+      },
+      where: {
+        id: token.id,
+      },
+    })
 
     return tokens
   }
