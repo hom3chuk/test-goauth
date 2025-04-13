@@ -24,7 +24,7 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
-    "@prisma/client": "6.6.0",
+    "@prisma/client": "^6.6.0",
     "crypto": "^1.0.1",
     "googleapis": "^148.0.0",
     "prisma": "^6.6.0",
