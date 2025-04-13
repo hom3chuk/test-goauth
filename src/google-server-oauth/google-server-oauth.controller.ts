@@ -18,8 +18,18 @@ export class GoogleServerOauthController {
       // @todo add http 400 fitler
       return `something went wrong: ${error}`
     } else {
-        await this.googleServerOauthService.getTokenFromState(code, state)
-        return (await this.googleServerOauthService.getCalendarList()).data.items?.map(i => i.summary)
+      //@todo get state from jwt
+      const userState =
+        'c1982bc5594823df2697a07be9440bf1dcaec78722385927644d407e695c325b'
+
+      // if (state !== userState) {
+      //     throw new Error('States do not match, possible CSRF.')
+      // }
+
+      await this.googleServerOauthService.getTokenFromCode(code)
+      return (
+        await this.googleServerOauthService.getCalendarList()
+      ).data.items?.map((i) => i.summary)
     }
   }
 

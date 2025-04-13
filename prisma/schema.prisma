@@ -16,6 +16,16 @@ datasource db {
 
 model Token {
   id            String  @id @unique @default(dbgenerated("gen_random_uuid()")) 
-  state         String  @unique
+  user          User    @relation(fields: [user_id], references: [id])
+  user_id       String  @unique
+  access_token  String?
   refresh_token String?
+  scope         String?
+}
+
+model User {
+  id        String  @id @unique @default(dbgenerated("gen_random_uuid()")) 
+  googleId  String  @unique
+  name      String?  
+  token     Token?   
 }
