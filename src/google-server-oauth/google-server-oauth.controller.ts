@@ -8,7 +8,7 @@ export class GoogleServerOauthController {
   constructor(private googleServerOauthService: GoogleServerOauthService) {}
 
   @Get('callback')
-  getCallback(
+  async getCallback(
     @Query('code') code: string,
     @Query('error') error: string,
     @Query('state') state: string,
@@ -18,7 +18,8 @@ export class GoogleServerOauthController {
       // @todo add http 400 fitler
       return `something went wrong: ${error}`
     } else {
-      return this.googleServerOauthService.getTokenFromState(code, state)
+        await this.googleServerOauthService.getTokenFromState(code, state)
+        return (await this.googleServerOauthService.getCalendarList()).data.items?.map(i => i.summary)
     }
   }
 
@@ -28,5 +29,10 @@ export class GoogleServerOauthController {
     return {
       url: this.googleServerOauthService.getAuthUrl(),
     }
+  }
+
+  @Get('calendars')
+  getCalendars() {
+    return this.googleServerOauthService.getCalendarList()
   }
 }

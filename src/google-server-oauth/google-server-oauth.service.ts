@@ -71,6 +71,16 @@ export class GoogleServerOauthService {
       },
     })
 
-    return tokens
+    return true
+  }
+
+  async getCalendarList() {
+    this.logger.log('getCalendarList')
+    const cal = google.calendar({
+        version: 'v3',
+        auth: this.googleOAuth,
+    })
+
+    return await cal.calendarList.list()
   }
 }
