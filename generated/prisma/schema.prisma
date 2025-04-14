@@ -20,7 +20,7 @@ model Token {
   user_id       String  @unique
   access_token  String?
   refresh_token String?
-  scope         String
+  scope         String?
 }
 
 model User {

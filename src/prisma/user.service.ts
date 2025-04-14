@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
 import { User, Prisma } from 'generated/prisma'
 
-type UserWithToken = Prisma.UserGetPayload<{
+export type UserWithToken = Prisma.UserGetPayload<{
   include: { token: true }
 }>
 

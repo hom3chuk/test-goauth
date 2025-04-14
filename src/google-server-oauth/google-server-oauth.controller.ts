@@ -1,5 +1,15 @@
-import { Controller, Get, Logger, Query, Redirect } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Logger,
+  Query,
+  Redirect,
+  Request,
+  UseGuards,
+} from '@nestjs/common'
 import { GoogleServerOauthService } from './google-server-oauth.service'
+import { AuthGuard } from 'src/auth/guards/auth.guard'
+import { Request as ExpressRequest } from 'express'
 
 @Controller('google-server-oauth')
 export class GoogleServerOauthController {
@@ -18,18 +28,9 @@ export class GoogleServerOauthController {
       // @todo add http 400 fitler
       return `something went wrong: ${error}`
     } else {
-      //@todo get state from jwt
-      const userState =
-        'c1982bc5594823df2697a07be9440bf1dcaec78722385927644d407e695c325b'
+      const auth = await this.googleServerOauthService.getTokenFromCode(code)
 
-      // if (state !== userState) {
-      //     throw new Error('States do not match, possible CSRF.')
-      // }
-
-      await this.googleServerOauthService.getTokenFromCode(code)
-      return (
-        await this.googleServerOauthService.getCalendarList()
-      ).data.items?.map((i) => i.summary)
+      return `<html><body>success<script>localStorage.setItem('accessToken', '${auth.accessToken}')</script></body></html>`
     }
   }
 
@@ -41,8 +42,16 @@ export class GoogleServerOauthController {
     }
   }
 
+  @UseGuards(AuthGuard)
   @Get('calendars')
-  getCalendars() {
-    return this.googleServerOauthService.getCalendarList()
+  async getCalendars(
+    @Request()
+    request: ExpressRequest & { user: { userId: string; googleId: string } },
+  ) {
+    const calendars = await this.googleServerOauthService.getCalendarList(
+      request.user.userId,
+    )
+
+    return calendars.data.items?.map((i) => i.summary)
   }
 }

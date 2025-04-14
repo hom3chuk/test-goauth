@@ -1098,7 +1098,7 @@ export namespace Prisma {
     user_id: string
     access_token: string | null
     refresh_token: string | null
-    scope: string
+    scope: string | null
     _count: TokenCountAggregateOutputType | null
     _min: TokenMinAggregateOutputType | null
     _max: TokenMaxAggregateOutputType | null
@@ -1174,7 +1174,7 @@ export namespace Prisma {
       user_id: string
       access_token: string | null
       refresh_token: string | null
-      scope: string
+      scope: string | null
     }, ExtArgs["result"]["token"]>
     composites: {}
   }
@@ -3157,7 +3157,7 @@ export namespace Prisma {
     user_id?: StringFilter<"Token"> | string
     access_token?: StringNullableFilter<"Token"> | string | null
     refresh_token?: StringNullableFilter<"Token"> | string | null
-    scope?: StringFilter<"Token"> | string
+    scope?: StringNullableFilter<"Token"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3166,7 +3166,7 @@ export namespace Prisma {
     user_id?: SortOrder
     access_token?: SortOrderInput | SortOrder
     refresh_token?: SortOrderInput | SortOrder
-    scope?: SortOrder
+    scope?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -3178,7 +3178,7 @@ export namespace Prisma {
     NOT?: TokenWhereInput | TokenWhereInput[]
     access_token?: StringNullableFilter<"Token"> | string | null
     refresh_token?: StringNullableFilter<"Token"> | string | null
-    scope?: StringFilter<"Token"> | string
+    scope?: StringNullableFilter<"Token"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "id" | "user_id">
 
@@ -3187,7 +3187,7 @@ export namespace Prisma {
     user_id?: SortOrder
     access_token?: SortOrderInput | SortOrder
     refresh_token?: SortOrderInput | SortOrder
-    scope?: SortOrder
+    scope?: SortOrderInput | SortOrder
     _count?: TokenCountOrderByAggregateInput
     _max?: TokenMaxOrderByAggregateInput
     _min?: TokenMinOrderByAggregateInput
@@ -3201,7 +3201,7 @@ export namespace Prisma {
     user_id?: StringWithAggregatesFilter<"Token"> | string
     access_token?: StringNullableWithAggregatesFilter<"Token"> | string | null
     refresh_token?: StringNullableWithAggregatesFilter<"Token"> | string | null
-    scope?: StringWithAggregatesFilter<"Token"> | string
+    scope?: StringNullableWithAggregatesFilter<"Token"> | string | null
   }
 
   export type UserWhereInput = {
@@ -3253,7 +3253,7 @@ export namespace Prisma {
     id?: string
     access_token?: string | null
     refresh_token?: string | null
-    scope: string
+    scope?: string | null
     user: UserCreateNestedOneWithoutTokenInput
   }
 
@@ -3262,14 +3262,14 @@ export namespace Prisma {
     user_id: string
     access_token?: string | null
     refresh_token?: string | null
-    scope: string
+    scope?: string | null
   }
 
   export type TokenUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTokenNestedInput
   }
 
@@ -3278,7 +3278,7 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TokenCreateManyInput = {
@@ -3286,14 +3286,14 @@ export namespace Prisma {
     user_id: string
     access_token?: string | null
     refresh_token?: string | null
-    scope: string
+    scope?: string | null
   }
 
   export type TokenUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TokenUncheckedUpdateManyInput = {
@@ -3301,7 +3301,7 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserCreateInput = {
@@ -3655,14 +3655,14 @@ export namespace Prisma {
     id?: string
     access_token?: string | null
     refresh_token?: string | null
-    scope: string
+    scope?: string | null
   }
 
   export type TokenUncheckedCreateWithoutUserInput = {
     id?: string
     access_token?: string | null
     refresh_token?: string | null
-    scope: string
+    scope?: string | null
   }
 
   export type TokenCreateOrConnectWithoutUserInput = {
@@ -3685,14 +3685,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TokenUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
-    scope?: StringFieldUpdateOperationsInput | string
+    scope?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
